@@ -51,7 +51,7 @@ class SuperUserTest extends RedTest_Framework_TestCase {
     list($success, $userObject, $msg) = User::loginProgrammatically(1);
     self::assertTrue($success, $msg);
 
-    list($success, self::$articleObject, $msg) = Article::createDefault();
+    list($success, self::$articleObject, $msg) = Article::createRandom();
     self::assertTrue($success, $msg);
   }
 
@@ -91,7 +91,7 @@ class SuperUserTest extends RedTest_Framework_TestCase {
       $articleCommentForm->getErrors()
     );
 
-    list($success, $fields, $msg) = $articleCommentForm->fillDefaultValues(
+    list($success, $fields, $msg) = $articleCommentForm->fillRandomValues(
       self::$options
     );
     $this->assertTrue($success, $msg);
@@ -105,9 +105,27 @@ class SuperUserTest extends RedTest_Framework_TestCase {
   }
 
   /**
-   * Make sure that superuser does not have permission to edit his own comments.
+   * Make sure that superuser has permission to view his own comment.
    *
    * @depends testCommentPost
+   */
+  public function testCommentViewAccess() {
+    $this->assertTrue(
+      Menu::hasAccess(
+        'comment/' . self::$articleCommentObject->getId() . '/view'
+      ),
+      "Superuser does not have permission to view his own comment."
+    );
+    $this->assertTrue(
+      user_access('access comments'),
+      "Superuser does not have permission to view his own comment."
+    );
+  }
+
+  /**
+   * Make sure that superuser has permission to edit his own comments.
+   *
+   * @depends testCommentViewAccess
    */
   public function testCommentEditAccess() {
     $this->assertTrue(
@@ -138,7 +156,7 @@ class SuperUserTest extends RedTest_Framework_TestCase {
       $articleCommentForm->getErrors()
     );
 
-    list($success, $fields, $msg) = $articleCommentForm->fillDefaultValues(
+    list($success, $fields, $msg) = $articleCommentForm->fillRandomValues(
       self::$options
     );
     $this->assertTrue($success, $msg);
@@ -182,7 +200,7 @@ class SuperUserTest extends RedTest_Framework_TestCase {
       $articleReplyForm->getErrors()
     );
 
-    list($success, $fields, $msg) = $articleReplyForm->fillDefaultValues(
+    list($success, $fields, $msg) = $articleReplyForm->fillRandomValues(
       self::$options
     );
     $this->assertTrue($success, $msg);

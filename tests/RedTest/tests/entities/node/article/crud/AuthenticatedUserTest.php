@@ -41,7 +41,7 @@ class AuthenticatedUserTest extends RedTest_Framework_TestCase {
 
     User::logout();
 
-    list($success, $userObject, $msg) = User::createDefault();
+    list($success, $userObject, $msg) = User::createRandom();
     self::assertTrue($success, $msg);
 
     list($success, self::$userObject, $msg) = User::login(

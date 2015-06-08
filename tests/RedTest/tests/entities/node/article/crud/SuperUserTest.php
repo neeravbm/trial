@@ -72,7 +72,7 @@ class SuperUserTest extends RedTest_Framework_TestCase {
   public function testCreate() {
     $articleForm = new ArticleForm();
 
-    list($success, $fields, $msg) = $articleForm->fillDefaultValues(
+    list($success, $fields, $msg) = $articleForm->fillRandomValues(
       self::$options
     );
     $this->assertTrue($success, $msg);
@@ -112,7 +112,7 @@ class SuperUserTest extends RedTest_Framework_TestCase {
   public function testUpdate() {
     $articleForm = new ArticleForm(self::$articleId);
 
-    list($success, self::$fields, $msg) = $articleForm->fillDefaultValues(
+    list($success, self::$fields, $msg) = $articleForm->fillRandomValues(
       self::$options
     );
     $this->assertTrue($success, $msg);

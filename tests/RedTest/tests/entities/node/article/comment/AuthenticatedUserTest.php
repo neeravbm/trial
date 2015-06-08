@@ -45,12 +45,12 @@ class AuthenticatedUserTest extends RedTest_Framework_TestCase {
     list($success, $userObject, $msg) = User::loginProgrammatically(1);
     self::assertTrue($success, $msg);
 
-    list($success, self::$articleObject, $msg) = Article::createDefault();
+    list($success, self::$articleObject, $msg) = Article::createRandom();
     self::assertTrue($success, $msg);
 
     $userObject->logout();
 
-    list($success, $userObject, $msg) = User::createDefault();
+    list($success, $userObject, $msg) = User::createRandom();
     self::assertTrue($success, $msg);
 
     list($success, $userObject, $msg) = User::login(
@@ -85,7 +85,7 @@ class AuthenticatedUserTest extends RedTest_Framework_TestCase {
       $articleCommentForm->getErrors()
     );
 
-    list($success, $fields, $msg) = $articleCommentForm->fillDefaultValues(
+    list($success, $fields, $msg) = $articleCommentForm->fillRandomValues(
       self::$options
     );
     $this->assertTrue($success, $msg);
@@ -99,10 +99,28 @@ class AuthenticatedUserTest extends RedTest_Framework_TestCase {
   }
 
   /**
+   * Make sure that authenticated user has permission to view his own comment.
+   *
+   * @depends testCommentPost
+   */
+  public function testCommentViewAccess() {
+    $this->assertTrue(
+      Menu::hasAccess(
+        'comment/' . self::$articleCommentObject->getId() . '/view'
+      ),
+      "Authenticated user does not have permission to view his own comment."
+    );
+    $this->assertTrue(
+      user_access('access comments'),
+      "Authenticated user does not have permission to view his own comment."
+    );
+  }
+
+  /**
    * Make sure that authenticated user does not have permission to edit his own
    * comments.
    *
-   * @depends testCommentPost
+   * @depends testCommentViewAccess
    */
   public function testCommentEditAccess() {
     $this->assertFalse(
@@ -150,7 +168,7 @@ class AuthenticatedUserTest extends RedTest_Framework_TestCase {
       $articleReplyForm->getErrors()
     );
 
-    list($success, $fields, $msg) = $articleReplyForm->fillDefaultValues(
+    list($success, $fields, $msg) = $articleReplyForm->fillRandomValues(
       self::$options
     );
     $this->assertTrue($success, $msg);
