@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="" tests="33" assertions="76" failures="0" errors="0" time="2.485431">
+    <testsuite name="RedTest\tests\blocks\AnonymousUserTest" tests="3" assertions="6" failures="0" errors="0" time="0.048547" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/blocks/AnonymousUserTest.php">
+      <testcase name="testLoginBlock" class="RedTest\tests\blocks\AnonymousUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/blocks/AnonymousUserTest.php" line="33" assertions="2" time="0.044940"/>
+      <testcase name="testNavigationBlock" class="RedTest\tests\blocks\AnonymousUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/blocks/AnonymousUserTest.php" line="48" assertions="2" time="0.001838"/>
+      <testcase name="testSearchFormBlock" class="RedTest\tests\blocks\AnonymousUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/blocks/AnonymousUserTest.php" line="63" assertions="2" time="0.001769"/>
+    </testsuite>
+    <testsuite name="RedTest\tests\blocks\SuperUserTest" tests="3" assertions="6" failures="0" errors="0" time="0.043035" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/blocks/SuperUserTest.php">
+      <testcase name="testLoginBlock" class="RedTest\tests\blocks\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/blocks/SuperUserTest.php" line="34" assertions="2" time="0.038240"/>
+      <testcase name="testNavigationBlock" class="RedTest\tests\blocks\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/blocks/SuperUserTest.php" line="49" assertions="2" time="0.001865"/>
+      <testcase name="testSearchFormBlock" class="RedTest\tests\blocks\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/blocks/SuperUserTest.php" line="64" assertions="2" time="0.002930"/>
+    </testsuite>
+    <testsuite name="RedTest\tests\entities\node\article\comment\AnonymousUserTest" tests="1" assertions="5" failures="0" errors="0" time="0.482647" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/AnonymousUserTest.php">
+      <testcase name="testCommentPost" class="RedTest\tests\entities\node\article\comment\AnonymousUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/AnonymousUserTest.php" line="47" assertions="5" time="0.482647"/>
+    </testsuite>
+    <testsuite name="RedTest\tests\entities\node\article\comment\SuperUserTest" tests="9" assertions="19" failures="0" errors="0" time="0.504996" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/SuperUserTest.php">
+      <testcase name="testCommentOpen" class="RedTest\tests\entities\node\article\comment\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/SuperUserTest.php" line="61" assertions="1" time="0.006361"/>
+      <testcase name="testCommentPostAccess" class="RedTest\tests\entities\node\article\comment\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/SuperUserTest.php" line="72" assertions="1" time="0.001318"/>
+      <testcase name="testCommentPost" class="RedTest\tests\entities\node\article\comment\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/SuperUserTest.php" line="84" assertions="4" time="0.130771"/>
+      <testcase name="testCommentEditAccess" class="RedTest\tests\entities\node\article\comment\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/SuperUserTest.php" line="112" assertions="2" time="0.010355"/>
+      <testcase name="testCommentEdit" class="RedTest\tests\entities\node\article\comment\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/SuperUserTest.php" line="131" assertions="4" time="0.160502"/>
+      <testcase name="testCommentReplyAccess" class="RedTest\tests\entities\node\article\comment\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/SuperUserTest.php" line="159" assertions="1" time="0.003391"/>
+      <testcase name="testCommentReply" class="RedTest\tests\entities\node\article\comment\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/SuperUserTest.php" line="174" assertions="4" time="0.119377"/>
+      <testcase name="testCommentDeleteAccess" class="RedTest\tests\entities\node\article\comment\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/SuperUserTest.php" line="203" assertions="1" time="0.002501"/>
+      <testcase name="testCommentDelete" class="RedTest\tests\entities\node\article\comment\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/SuperUserTest.php" line="215" assertions="1" time="0.070420"/>
+    </testsuite>
+    <testsuite name="RedTest\tests\blocks\AuthenticatedUserTest" tests="2" assertions="4" failures="0" errors="0" time="0.033818" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/blocks/AuthenticatedUserTest.php">
+      <testcase name="testLoginBlock" class="RedTest\tests\blocks\AuthenticatedUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/blocks/AuthenticatedUserTest.php" line="40" assertions="2" time="0.032805"/>
+      <testcase name="testNavigationBlock" class="RedTest\tests\blocks\AuthenticatedUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/blocks/AuthenticatedUserTest.php" line="56" assertions="2" time="0.001013"/>
+    </testsuite>
+    <testsuite name="RedTest\tests\entities\node\article\crud\AuthenticatedUserTest" tests="1" assertions="2" failures="0" errors="0" time="0.004484" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/crud/AuthenticatedUserTest.php">
+      <testcase name="testCreateAccess" class="RedTest\tests\entities\node\article\crud\AuthenticatedUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/crud/AuthenticatedUserTest.php" line="57" assertions="2" time="0.004484"/>
+    </testsuite>
+    <testsuite name="RedTest\tests\entities\node\article\crud\SuperUserTest" tests="8" assertions="21" failures="0" errors="0" time="1.19981" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/crud/SuperUserTest.php">
+      <testcase name="testCreateAccess" class="RedTest\tests\entities\node\article\crud\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/crud/SuperUserTest.php" line="55" assertions="2" time="0.005425"/>
+      <testcase name="testCreate" class="RedTest\tests\entities\node\article\crud\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/crud/SuperUserTest.php" line="72" assertions="3" time="0.607286"/>
+      <testcase name="testUpdateAccess" class="RedTest\tests\entities\node\article\crud\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/crud/SuperUserTest.php" line="94" assertions="2" time="0.004112"/>
+      <testcase name="testUpdate" class="RedTest\tests\entities\node\article\crud\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/crud/SuperUserTest.php" line="112" assertions="3" time="0.528280"/>
+      <testcase name="testViewAccess" class="RedTest\tests\entities\node\article\crud\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/crud/SuperUserTest.php" line="134" assertions="2" time="0.002335"/>
+      <testcase name="testView" class="RedTest\tests\entities\node\article\crud\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/crud/SuperUserTest.php" line="152" assertions="6" time="0.007350"/>
+      <testcase name="testDeleteAccess" class="RedTest\tests\entities\node\article\crud\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/crud/SuperUserTest.php" line="171" assertions="2" time="0.002425"/>
+      <testcase name="testDelete" class="RedTest\tests\entities\node\article\crud\SuperUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/crud/SuperUserTest.php" line="189" assertions="1" time="0.042597"/>
+    </testsuite>
+    <testsuite name="RedTest\tests\entities\node\article\comment\AuthenticatedUserTest" tests="6" assertions="13" failures="0" errors="0" time="0.168094" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/AuthenticatedUserTest.php">
+      <testcase name="testCommentPostAccess" class="RedTest\tests\entities\node\article\comment\AuthenticatedUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/AuthenticatedUserTest.php" line="66" assertions="1" time="0.001132"/>
+      <testcase name="testCommentPost" class="RedTest\tests\entities\node\article\comment\AuthenticatedUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/AuthenticatedUserTest.php" line="78" assertions="4" time="0.080905"/>
+      <testcase name="testCommentEditAccess" class="RedTest\tests\entities\node\article\comment\AuthenticatedUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/AuthenticatedUserTest.php" line="107" assertions="2" time="0.005880"/>
+      <testcase name="testCommentReplyAccess" class="RedTest\tests\entities\node\article\comment\AuthenticatedUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/AuthenticatedUserTest.php" line="127" assertions="1" time="0.002199"/>
+      <testcase name="testCommentReply" class="RedTest\tests\entities\node\article\comment\AuthenticatedUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/AuthenticatedUserTest.php" line="142" assertions="4" time="0.076367"/>
+      <testcase name="testCommentDeleteAccess" class="RedTest\tests\entities\node\article\comment\AuthenticatedUserTest" file="/Users/neeravm/Sites/drupal7/tests/RedTest/tests/entities/node/article/comment/AuthenticatedUserTest.php" line="170" assertions="1" time="0.001611"/>
+    </testsuite>
+  </testsuite>
+</testsuites>
