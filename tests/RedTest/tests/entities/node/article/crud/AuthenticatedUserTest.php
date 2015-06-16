@@ -41,18 +41,17 @@ class AuthenticatedUserTest extends RedTest_Framework_TestCase {
 
     User::logout();
 
-    list($success, $userObject, $msg) = User::createRandom();
-    self::assertTrue($success, $msg);
+    $userObject = User::createRandom()->verify(get_class());
 
-    list($success, self::$userObject, $msg) = User::login(
+    self::$userObject = User::login(
       $userObject->getNameValues(),
       $userObject->getPasswordValues()
-    );
-    self::assertTrue($success, $msg);
+    )->verify(get_class());
   }
 
   /**
-   * Make sure that the authenticated user has access to create an article.
+   * Make sure that the authenticated user does not have access to create an
+   * article.
    */
   public function testCreateAccess() {
     $this->assertFalse(

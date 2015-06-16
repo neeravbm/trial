@@ -41,8 +41,7 @@ class SuperUserTest extends RedTest_Framework_TestCase {
    * Log in as uid 1.
    */
   public static function setupBeforeClass() {
-    list($success, $userObject, $msg) = User::loginProgrammatically(1);
-    self::assertTrue($success, $msg);
+    $userObject = User::loginProgrammatically(1)->verify(get_class());
 
     self::$options = array(
       'required_fields_only' => FALSE,
@@ -71,17 +70,13 @@ class SuperUserTest extends RedTest_Framework_TestCase {
    */
   public function testCreate() {
     $articleForm = new ArticleForm();
+    $articleForm->verify($this);
 
-    list($success, $fields, $msg) = $articleForm->fillRandomValues(
-      self::$options
-    );
-    $this->assertTrue($success, $msg);
+    $fields = $articleForm->fillRandomValues(self::$options)->verify($this);
 
-    list($success, $articleObject, $msg) = $articleForm->submit();
-    $this->assertTrue($success, $msg);
+    $articleObject = $articleForm->submit()->verify($this);
 
-    list($success, $msg) = $articleObject->checkValues($fields);
-    $this->assertTrue($success, $msg);
+    $articleObject->checkValues($fields)->verify($this);
 
     self::$articleId = $articleObject->getId();
   }
@@ -111,17 +106,15 @@ class SuperUserTest extends RedTest_Framework_TestCase {
    */
   public function testUpdate() {
     $articleForm = new ArticleForm(self::$articleId);
+    $articleForm->verify($this);
 
-    list($success, self::$fields, $msg) = $articleForm->fillRandomValues(
-      self::$options
+    self::$fields = $articleForm->fillRandomValues(self::$options)->verify(
+      $this
     );
-    $this->assertTrue($success, $msg);
 
-    list($success, $articleObject, $msg) = $articleForm->submit();
-    $this->assertTrue($success, $msg);
+    $articleObject = $articleForm->submit()->verify($this);
 
-    list($success, $msg) = $articleObject->checkValues(self::$fields);
-    $this->assertTrue($success, $msg);
+    $articleObject->checkValues(self::$fields)->verify($this);
 
     return $articleObject->getId();
   }
@@ -153,14 +146,38 @@ class SuperUserTest extends RedTest_Framework_TestCase {
     $article = new Article(self::$articleId);
 
     $teaser_view = $article->view('teaser');
-    $this->assertArrayHasKey('body', $teaser_view, 'Article teaser does not show body field.');
-    $this->assertArrayHasKey('field_image', $teaser_view, 'Article teaser does not show image field.');
-    $this->assertArrayHasKey('field_tags', $teaser_view, 'Article teaser does not show tags field.');
+    $this->assertArrayHasKey(
+      'body',
+      $teaser_view,
+      'Article teaser does not show body field.'
+    );
+    $this->assertArrayHasKey(
+      'field_image',
+      $teaser_view,
+      'Article teaser does not show image field.'
+    );
+    $this->assertArrayHasKey(
+      'field_tags',
+      $teaser_view,
+      'Article teaser does not show tags field.'
+    );
 
     $full_view = $article->view('full');
-    $this->assertArrayHasKey('body', $full_view, 'Article does not show body field.');
-    $this->assertArrayHasKey('field_image', $full_view, 'Article does not show image field.');
-    $this->assertArrayHasKey('field_tags', $full_view, 'Article teaser does not show tags field.');
+    $this->assertArrayHasKey(
+      'body',
+      $full_view,
+      'Article does not show body field.'
+    );
+    $this->assertArrayHasKey(
+      'field_image',
+      $full_view,
+      'Article does not show image field.'
+    );
+    $this->assertArrayHasKey(
+      'field_tags',
+      $full_view,
+      'Article teaser does not show tags field.'
+    );
   }
 
   /**
@@ -188,8 +205,8 @@ class SuperUserTest extends RedTest_Framework_TestCase {
    */
   public function testDelete() {
     $article = new Article(self::$articleId);
+    $article->verify($this);
 
-    list($success, $msg) = $article->delete();
-    $this->assertTrue($success, $msg);
+    $article->delete()->verify($this);
   }
 }

@@ -40,11 +40,9 @@ class AnonymousUserTest extends RedTest_Framework_TestCase {
    * Make sure that user is anonymous.
    */
   public static function setupBeforeClass() {
-    list($success, $userObject, $msg) = User::loginProgrammatically(1);
-    self::assertTrue($success, $msg);
+    $userObject = User::loginProgrammatically(1)->verify(get_class());
 
-    list($success, self::$articleObject, $msg) = Article::createRandom();
-    self::assertTrue($success, $msg);
+    self::$articleObject = Article::createRandom()->verify(get_class());
 
     /**
      * @todo ArticleComment::createDefault doesn't work yet. Need to fix it.
@@ -54,17 +52,16 @@ class AnonymousUserTest extends RedTest_Framework_TestCase {
       array('nid' => self::$articleObject->getId())
     );*/
 
-    $articleCommentForm = new ArticleCommentForm(NULL, self::$articleObject->getId());
-    self::assertTrue($articleCommentForm->getInitialized(), $articleCommentForm->getErrors());
+    $response = new ArticleCommentForm(NULL, self::$articleObject->getId());
+    $articleCommentForm = $response->verify(get_class());
 
-    list($success, $fields, $msg) = $articleCommentForm->fillRandomValues();
-    self::assertTrue($success, $msg);
+    $fields = $articleCommentForm->fillRandomValues()->verify(get_class());
 
-    list($success, self::$articleCommentObject, $msg) = $articleCommentForm->submit();
-    self::assertTrue($success, $msg);
+    self::$articleCommentObject = $articleCommentForm->submit()->verify(
+      get_class()
+    );
 
-    list($success, $msg) = self::$articleCommentObject->checkValues($fields);
-    self::assertTrue($success, $msg);
+    self::$articleCommentObject->checkValues($fields)->verify(get_class());
 
     User::logout();
   }

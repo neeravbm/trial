@@ -42,22 +42,18 @@ class AuthenticatedUserTest extends RedTest_Framework_TestCase {
    * Create an authenticated user and log in as that user. Create an article.
    */
   public static function setupBeforeClass() {
-    list($success, $userObject, $msg) = User::loginProgrammatically(1);
-    self::assertTrue($success, $msg);
+    $userObject = User::loginProgrammatically(1)->verify(get_class());
 
-    list($success, self::$articleObject, $msg) = Article::createRandom();
-    self::assertTrue($success, $msg);
+    self::$articleObject = Article::createRandom()->verify(get_class());
 
     $userObject->logout();
 
-    list($success, $userObject, $msg) = User::createRandom();
-    self::assertTrue($success, $msg);
+    $userObject = User::createRandom()->verify(get_class());
 
-    list($success, $userObject, $msg) = User::login(
+    $userObject = User::login(
       $userObject->getNameValues(),
       $userObject->getPasswordValues()
-    );
-    self::assertTrue($success, $msg);
+    )->verify(get_class());
   }
 
   /**
@@ -80,22 +76,15 @@ class AuthenticatedUserTest extends RedTest_Framework_TestCase {
       NULL,
       self::$articleObject->getId()
     );
-    $this->assertTrue(
-      $articleCommentForm->getInitialized(),
-      $articleCommentForm->getErrors()
+    $articleCommentForm->verify($this);
+
+    $fields = $articleCommentForm->fillRandomValues(self::$options)->verify(
+      $this
     );
 
-    list($success, $fields, $msg) = $articleCommentForm->fillRandomValues(
-      self::$options
-    );
-    $this->assertTrue($success, $msg);
+    self::$articleCommentObject = $articleCommentForm->submit()->verify($this);
 
-    list($success, self::$articleCommentObject, $msg) = $articleCommentForm->submit(
-    );
-    $this->assertTrue($success, $msg);
-
-    list($success, $msg) = self::$articleCommentObject->checkValues($fields);
-    $this->assertTrue($success, $msg);
+    self::$articleCommentObject->checkValues($fields)->verify($this);
   }
 
   /**
@@ -163,21 +152,13 @@ class AuthenticatedUserTest extends RedTest_Framework_TestCase {
       self::$articleObject->getId(),
       self::$articleCommentObject->getId()
     );
-    $this->assertTrue(
-      $articleReplyForm->getInitialized(),
-      $articleReplyForm->getErrors()
-    );
+    $articleReplyForm->verify($this);
 
-    list($success, $fields, $msg) = $articleReplyForm->fillRandomValues(
-      self::$options
-    );
-    $this->assertTrue($success, $msg);
+    $fields = $articleReplyForm->fillRandomValues(self::$options)->verify($this);
 
-    list($success, $articleReplyObject, $msg) = $articleReplyForm->submit();
-    $this->assertTrue($success, $msg);
+    $articleReplyObject = $articleReplyForm->submit()->verify($this);
 
-    list($success, $msg) = $articleReplyObject->checkValues($fields);
-    $this->assertTrue($success, $msg);
+    $articleReplyObject->checkValues($fields)->verify($this);
   }
 
   /**

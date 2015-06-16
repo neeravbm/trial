@@ -48,11 +48,9 @@ class SuperUserTest extends RedTest_Framework_TestCase {
    * Log in as uid 1 and create an article.
    */
   public static function setupBeforeClass() {
-    list($success, $userObject, $msg) = User::loginProgrammatically(1);
-    self::assertTrue($success, $msg);
+    $userObject = User::loginProgrammatically(1)->verify(get_class());
 
-    list($success, self::$articleObject, $msg) = Article::createRandom();
-    self::assertTrue($success, $msg);
+    self::$articleObject = Article::createRandom()->verify(get_class());
   }
 
   /**
@@ -86,22 +84,15 @@ class SuperUserTest extends RedTest_Framework_TestCase {
       NULL,
       self::$articleObject->getId()
     );
-    $this->assertTrue(
-      $articleCommentForm->getInitialized(),
-      $articleCommentForm->getErrors()
+    $articleCommentForm->verify($this);
+
+    $fields = $articleCommentForm->fillRandomValues(self::$options)->verify(
+      $this
     );
 
-    list($success, $fields, $msg) = $articleCommentForm->fillRandomValues(
-      self::$options
-    );
-    $this->assertTrue($success, $msg);
+    self::$articleCommentObject = $articleCommentForm->submit()->verify($this);
 
-    list($success, self::$articleCommentObject, $msg) = $articleCommentForm->submit(
-    );
-    $this->assertTrue($success, $msg);
-
-    list($success, $msg) = self::$articleCommentObject->checkValues($fields);
-    $this->assertTrue($success, $msg);
+    self::$articleCommentObject->checkValues($fields)->verify($this);
   }
 
   /**
@@ -151,22 +142,15 @@ class SuperUserTest extends RedTest_Framework_TestCase {
       self::$articleCommentObject->getId(),
       self::$articleObject->getId()
     );
-    $this->assertTrue(
-      $articleCommentForm->getInitialized(),
-      $articleCommentForm->getErrors()
+    $articleCommentForm->verify($this);
+
+    $fields = $articleCommentForm->fillRandomValues(self::$options)->verify(
+      $this
     );
 
-    list($success, $fields, $msg) = $articleCommentForm->fillRandomValues(
-      self::$options
-    );
-    $this->assertTrue($success, $msg);
+    self::$articleCommentObject = $articleCommentForm->submit()->verify($this);
 
-    list($success, self::$articleCommentObject, $msg) = $articleCommentForm->submit(
-    );
-    $this->assertTrue($success, $msg);
-
-    list($success, $msg) = self::$articleCommentObject->checkValues($fields);
-    $this->assertTrue($success, $msg);
+    self::$articleCommentObject->checkValues($fields)->verify($this);
   }
 
   /**
@@ -195,22 +179,13 @@ class SuperUserTest extends RedTest_Framework_TestCase {
       self::$articleObject->getId(),
       self::$articleCommentObject->getId()
     );
-    $this->assertTrue(
-      $articleReplyForm->getInitialized(),
-      $articleReplyForm->getErrors()
-    );
+    $articleReplyForm->verify($this);
 
-    list($success, $fields, $msg) = $articleReplyForm->fillRandomValues(
-      self::$options
-    );
-    $this->assertTrue($success, $msg);
+    $fields = $articleReplyForm->fillRandomValues(self::$options)->verify($this);
 
-    list($success, self::$articleReplyObject, $msg) = $articleReplyForm->submit(
-    );
-    $this->assertTrue($success, $msg);
+    self::$articleReplyObject = $articleReplyForm->submit()->verify($this);
 
-    list($success, $msg) = self::$articleReplyObject->checkValues($fields);
-    $this->assertTrue($success, $msg);
+    self::$articleReplyObject->checkValues($fields)->verify($this);
   }
 
   /**
@@ -234,7 +209,9 @@ class SuperUserTest extends RedTest_Framework_TestCase {
     $commentDeleteForm = new CommentConfirmDelete(
       self::$articleCommentObject->getId()
     );
-    list($success, $msg) = $commentDeleteForm->submit();
+    $commentDeleteForm->verify($this);
+
+    $commentDeleteForm->submit()->verify($this);
 
     $articleCommentObject = new ArticleComment(
       self::$articleCommentObject->getId()
