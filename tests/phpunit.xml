@@ -17,7 +17,7 @@
          verbose="true">
     <testsuites>
         <testsuite name="ParaTest Fixtures">
-            <directory>./RedTest/tests</directory>
+		<directory>./RedTest/tests/entities/node/test_me</directory>
         </testsuite>
     </testsuites>
 </phpunit>
